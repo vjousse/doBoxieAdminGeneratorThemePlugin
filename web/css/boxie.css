@@ -26,3 +26,7 @@
 {
   background: url(boxie/img/led-ico/pencil.png) no-repeat 0 0;
 }
+#sf_admin_container th .sort_container
+{
+    float: right
+}

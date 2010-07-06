@@ -30,3 +30,11 @@
 {
     float: right
 }
+#sf_admin_container form.list_form
+{
+    padding: 0 0 18px;
+}
+#sf_admin_container ul.actions
+{
+    padding-left: 18px;
+}

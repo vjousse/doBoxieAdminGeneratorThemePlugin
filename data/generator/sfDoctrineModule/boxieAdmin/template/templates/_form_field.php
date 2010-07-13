@@ -1,5 +1,19 @@
 [?php if ($field->isPartial()): ?]
-  [?php include_partial('<?php echo $this->getModuleName() ?>/'.$name, array('form' => $form, 'attributes' => $attributes instanceof sfOutputEscaper ? $attributes->getRawValue() : $attributes)) ?]
+  [?php 
+  if (strpos($field->getName(), '/'))
+  {
+    $elements = explode('/', $field->getName());
+    
+    $module = $elements[0];
+    $action = $elements[1];
+  }
+  else
+  {
+    $module = $this->getModuleName();
+    $action = $name;
+  }
+  ?]
+  [?php include_partial("$module/".$action, array('form' => $form, 'attributes' => $attributes instanceof sfOutputEscaper ? $attributes->getRawValue() : $attributes)) ?]
 [?php elseif ($field->isComponent()): ?]
   [?php include_component('<?php echo $this->getModuleName() ?>', $name, array('form' => $form, 'attributes' => $attributes instanceof sfOutputEscaper ? $attributes->getRawValue() : $attributes)) ?]
 [?php else: ?]

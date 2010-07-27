@@ -15,6 +15,8 @@ $(document).ready(function() {
         }
     });
     // Switch categories
+    $('#h-wrap').unbind();
+    $('#h-wrap ul').unbind();
     $('#h-wrap').hover(function(){
         $(this).toggleClass('active');
         $("#h-wrap ul").css('display', 'block');

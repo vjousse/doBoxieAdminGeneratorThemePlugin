@@ -5,15 +5,15 @@ function box($header, $content, $width = 'full')
     $width = $width == 'full' ? 'box-100' : 'box-50';
     $html =<<<HTML
     <div class="box $width">
-		<div class="boxin">
-			<div class="header">
-				<h3>$header</h3>
-			</div>
-		</div>
-		<div class="content">
-		  $content
-		</div>
-	</div>
+        <div class="boxin">
+            <div class="header">
+                <h3>$header</h3>
+            </div>
+        </div>
+        <div class="content">
+          $content
+        </div>
+    </div>
 HTML;
     return $html;
 }
@@ -27,7 +27,14 @@ function doctrine_tabular($header, $data, $fields = null, $width = 'full')
         $row = array();
         foreach ($fields as $column_name => $field_name) 
         {
-            $row[$column_name] = $obj->$field_name;
+            try 
+            {
+                $row[$column_name] = $obj->$field_name;
+            }
+            catch (Exception $e) 
+            {
+                $row[$column_name] = $obj->$field_name();
+            }
         }
         $table[] = $row;
     }

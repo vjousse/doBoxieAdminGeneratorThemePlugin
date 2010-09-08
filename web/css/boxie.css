@@ -1,4 +1,4 @@
-#sf_admin_container ul li a
+#sf_admin_container ul.actions li a
 {
   padding-left: 20px;
   background: url(boxie/img/led-ico/application2.png) no-repeat 0 0;
@@ -36,5 +36,9 @@
 }
 #sf_admin_container ul.actions
 {
-    padding-left: 18px;
+    padding: 0px 0px 18px 18px;
+}
+div.content.tabbed_admin
+{
+    margin: 20px;
 }

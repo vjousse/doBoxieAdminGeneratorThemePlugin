@@ -39,10 +39,10 @@ function doctrine_tabular($header, $data, $fields = null, $width = 'full')
         $table[] = $row;
     }
     
-    return tabluar_box($header, $table, $columns = array_keys($fields), $width);
+    return tabular_box($header, $table, $columns = array_keys($fields), $width);
 }
 
-function tabluar_box($header, $table = array(), $columns = array(), $width = 'full')
+function tabular_box($header, $table = array(), $columns = array(), $width = 'full')
 {
     $content = '<table cellspacing="0"><thead><tr>';
     foreach ($columns as $col) { $content .= '<th>'.$col.'</th>'; }
@@ -61,4 +61,36 @@ function tabluar_box($header, $table = array(), $columns = array(), $width = 'fu
     $content .= '</tbody></table>';
     
     return box($header, $content, $width);
+}
+/**
+ * Removes special characters and replaces spaces with underscores.
+ * 
+ * @param  $string The text to transform
+ * @param string $replacement The replacement string
+ * @return string Transformed string
+ */
+function slugString($string, $replacement = '_')
+{
+  $aux = preg_quote($replacement, '/');
+
+  $map = array(
+    '/à|á|ã|â/' => 'a',
+    '/è|é|ê|ẽ|ë/' => 'e',
+    '/ì|í|î/' => 'i',
+    '/ò|ó|ô|õ|ø/' => 'o',
+    '/ù|ú|ũ|û/' => 'u',
+    '/ç/' => 'c',
+    '/ñ/' => 'n',
+    '/ä|æ/' => 'ae',
+    '/ö/' => 'oe',
+    '/ü/' => 'ue',
+    '/Ä/' => 'Ae',
+    '/Ü/' => 'Ue',
+    '/Ö/' => 'Oe',
+    '/ß/' => 'ss',
+    '/[^\w\s]/' => ' ',
+    '/\\s+/' => $replacement
+  );
+
+  return preg_replace(array_keys($map), array_values($map), $string);
 }

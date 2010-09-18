@@ -38,7 +38,13 @@
 {
     padding: 0px 0px 18px 18px;
 }
-div.content.tabbed_admin
+
+.sf_admin_form fieldset
 {
-    margin: 20px;
+    margin: 0 15px 15px 15px;
+}
+
+.sf_admin_form .tabbed_admin fieldset
+{
+    margin: 15px;
 }

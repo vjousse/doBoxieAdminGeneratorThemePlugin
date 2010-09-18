@@ -43,6 +43,10 @@
 {
     margin: 0 15px 15px 15px;
 }
+.sf_admin_form .tabbed_admin .flash
+{
+    margin: 15px 15px 0;
+}
 
 .sf_admin_form .tabbed_admin fieldset
 {

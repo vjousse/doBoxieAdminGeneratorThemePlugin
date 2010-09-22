@@ -39,7 +39,7 @@ Publish your assets:
 Copying boxie files
 -------------------
 
-Put the content of the boxie css/ folder into directory a newly created dir web/doBoxieAdminGeneratorThemePlugin/css/boxie (you should have a css per color and an image directory)
+Put the content of the boxie css/ folder into a newly created dir web/doBoxieAdminGeneratorThemePlugin/css/boxie (you should have a css per color and an image directory)
 Put the ddpng.js file into web/doBoxieAdminGeneratorThemePlugin/js/
 You'll need jQuery for this theme, don't forget to include it somewhere in a view.yml
 

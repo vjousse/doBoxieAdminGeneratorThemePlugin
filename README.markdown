@@ -43,9 +43,46 @@ Put the content of the boxie css/ folder into a newly created dir web/doBoxieAdm
 Put the ddpng.js file into web/doBoxieAdminGeneratorThemePlugin/js/
 You'll need jQuery for this theme, don't forget to include it somewhere in a view.yml
 
+Global Layout
+-------------
 
-Usage
------
+I've provided two examples of layout in doBoxieAdminGeneratorThemePlugin/layout.
+Global is the layout for your application, login is the layout for the login page.
+
+To add the layout to your login page when you're using sfDoctrineGuardPlugin, copy doBoxieAdminGeneratorThemePlugin/layout/login.php to apps/backend/templates/.
+Then create apps/backend/sfGuardAuth/ and apps/backend/sfGuardAuth/config/ directories and put a view.yml inside the last one:
+
+    [yml]
+    # in myproject/apps/backend/sfGuardAuth/config/view.yml
+    all:
+      layout: login
+      stylesheets:
+        - /doBoxieAdminGeneratorThemePlugin/css/boxie/blue.css
+
+
+Just do the same for the global layout by changing apps/backend/config/view.yml
+
+Be sure to include the boxie.js file in your app view.yml. For example, here is mine:
+
+    [yml]
+    # in myproject/apps/backend/config/view.yml
+
+    default:
+      http_metas:
+          content-type: text/html
+
+      stylesheets:
+          - back.css
+          - /doBoxieAdminGeneratorThemePlugin/css/boxie/blue.css
+      javascripts:
+          - jquery-1.4.2.min.js
+          - /doBoxieAdminGeneratorThemePlugin/js/boxie.js
+
+      has_layout:     true
+      layout:         global
+
+Admin generator usage
+---------------------
 
 You'll have to enable the theme in your generator.yml. You have to change the
 theme value to boxieAdmin and the css value to the css you want (depending on the color).
@@ -68,22 +105,6 @@ For example, you could have a file like this:
 
         ....
 
-Global Layout
--------------
 
-I've provided two examples of layout in doBoxieAdminGeneratorThemePlugin/layout.
-Global is the layout for your application, login is the layout for the login page.
-
-To add the layout to your login page when you're using sfDoctrineGuardPlugin, copy doBoxieAdminGeneratorThemePlugin/layout/login.php to apps/backend/templates/.
-Then create apps/backend/sfGuardAuth/ and apps/backend/sfGuardAuth/config/ directories and put a view.yml inside the last one:
-
-    [yml]
-    # in myproject/apps/backend/sfGuardAuth/config/view.yml
-    all:
-      layout: login
-      stylesheets:
-        - /doBoxieAdminGeneratorThemePlugin/css/boxie/blue.css
-
-Just do the same for the global layout by changing apps/backend/config/view.yml
 
 Feel free to modify and contribute !

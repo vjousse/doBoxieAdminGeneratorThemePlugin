@@ -52,7 +52,7 @@ theme value to boxieAdmin and the css value to the css you want (depending on th
 For example, you could have a file like this:
 
     [yml]
-    // in myproject/apps/frontend/modules/mymodule/config/generator.yml
+    # in myproject/apps/frontend/modules/mymodule/config/generator.yml
     generator:
       class: sfDoctrineGenerator
       param:
@@ -72,7 +72,18 @@ Global Layout
 -------------
 
 I've provided two examples of layout in doBoxieAdminGeneratorThemePlugin/layout.
-Global is the layout for your application, login in the layout for the login page.
+Global is the layout for your application, login is the layout for the login page.
 
+To add the layout to your login page when you're using sfDoctrineGuardPlugin, copy doBoxieAdminGeneratorThemePlugin/layout/login.php to apps/backend/templates/.
+Then create apps/backend/sfGuardAuth/ and apps/backend/sfGuardAuth/config/ directories and put a view.yml inside the last one:
+
+    [yml]
+    # in myproject/apps/backend/sfGuardAuth/config/view.yml
+    all:
+      layout: login
+      stylesheets:
+        - /doBoxieAdminGeneratorThemePlugin/css/boxie/blue.css
+
+Just do the same for the global layout by changing apps/backend/config/view.yml
 
 Feel free to modify and contribute !

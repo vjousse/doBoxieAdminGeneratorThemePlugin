@@ -1,24 +1,43 @@
 <?php 
 
-function box($header, $content, $width = 'full')
+/**
+ * Creates a box container. 
+ * @param  $header The title of the box
+ * @param  $content The contents (a table, text, etc.)
+ * @param string $width 'full' makes a 100% width box, otherwise 50%
+ * @param array $options Currently only looks for 'alt_color' to
+ * make the box color change
+ * @return string Box HTML
+ */
+function box($header, $content, $width = 'full', $options = array())
 {
+    $extra_classes = isset($options['alt_color']) ? 'altbox' : '' ;
     $width = $width == 'full' ? 'box-100' : 'box-50';
     $html =<<<HTML
-    <div class="box $width">
+    <div class="box $width $extra_classes">
         <div class="boxin">
             <div class="header">
                 <h3>$header</h3>
             </div>
-        </div>
-        <div class="content">
-          $content
+            <div class="content">
+              $content
+            </div>
         </div>
     </div>
 HTML;
     return $html;
 }
 
-function doctrine_tabular($header, $data, $fields = null, $width = 'full')
+/**
+ * Creates tabular container from a Doctrine_Collection
+ * @param  string $header Title of the container
+ * @param  Doctrine_Collection $data
+ * @param  array $fields array An assoc array with the container's table
+ * column name as key and the field or object method to retrieve the column's value
+ * @param  string $width 'full' for 100% with (default), 50% otherwise
+ * @return string table HTML
+ */
+function doctrine_tabular($header, $data, $fields = null, $width = 'full', $options = array())
 {
     $table = array();
     
@@ -39,10 +58,18 @@ function doctrine_tabular($header, $data, $fields = null, $width = 'full')
         $table[] = $row;
     }
     
-    return tabular_box($header, $table, $columns = array_keys($fields), $width);
+    return tabular_box($header, $table, $columns = array_keys($fields), $width, $options);
 }
 
-function tabular_box($header, $table = array(), $columns = array(), $width = 'full')
+/**
+ * Builds a box showing tabular data from an array
+ * @param  $header Title of the container
+ * @param array $table matrix with the table values
+ * @param array $columns name of the columns
+ * @param string $width 'full' for a 100% width-box (default) and 50% otherwise
+ * @return string HTML for the table container
+ */
+function tabular_box($header, $table = array(), $columns = array(), $width = 'full', $options = array())
 {
     $content = '<table cellspacing="0"><thead><tr>';
     foreach ($columns as $col) { $content .= '<th>'.$col.'</th>'; }
@@ -60,8 +87,9 @@ function tabular_box($header, $table = array(), $columns = array(), $width = 'fu
     
     $content .= '</tbody></table>';
     
-    return box($header, $content, $width);
+    return box($header, $content, $width, $options);
 }
+
 /**
  * Removes special characters and replaces spaces with underscores.
  * 

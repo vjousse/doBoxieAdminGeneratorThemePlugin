@@ -16,18 +16,9 @@
       $this->redirect('@<?php echo $this->getUrlForAction('list') ?>');
     }
 
-    if (!is_callable($this, $method = 'execute'.ucfirst($action)))
+    if (!method_exists($this, $method = 'execute'.ucfirst($action)))
     {
-      $event = $this->dispatcher->notifyUntil(new sfEvent($this, 'admin.action_not_found', array(
-        'method'    => $method,
-        'arguments' => $request
-      )));
-
-      if (!$event->isProcessed())
-      {
-        throw new InvalidArgumentException(sprintf('You must create a "%s" method for action "%s"', $method, $action));
-      }
-  
+      throw new InvalidArgumentException(sprintf('You must create a "%s" method for action "%s"', $method, $action));
     }
 
     if (!$this->getUser()->hasCredential($this->configuration->getCredentials($action)))

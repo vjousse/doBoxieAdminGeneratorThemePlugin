@@ -24,6 +24,7 @@
     endif;
 
     if ( $show_label ):
+        if ( $form->getWidget($name) instanceof sfWidgetFormInputCheckbox ) echo '<br>';
         echo $form[$name]->renderLabel($label,array('class'=>$className));
     endif;
 

@@ -10,7 +10,8 @@
     [?php include_partial('<?php echo $this->getModuleName() ?>/list_header', array('pager' => $pager)) ?]
   </div>
 
-    <div id="box1" class="box box-75"><!-- box full-width -->
+
+    <div id="box1" class="box box-<?php echo ($this->configuration->hasFilterForm() ? '75' : '100') ?>"><!-- box full-width -->
       <div class="boxin">
         <div class="header">
           <h3>[?php echo <?php echo $this->getI18NString('list.title') ?> ?]</h3>

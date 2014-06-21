@@ -18,7 +18,7 @@
         </div>
         <div class="content">
   <?php if ($this->configuration->getValue('list.batch_actions')): ?>
-      <form action="[?php echo url_for('<?php echo $this->getUrlForAction('collection') ?>', array('action' => 'batch')) ?]" method="post">
+      <form action="[?php echo url_for('<?php echo $this->getUrlForAction('collection') ?>', array('action' => 'batch')) ?]" method="post" class="list_form">
   <?php endif; ?>
       [?php include_partial('<?php echo $this->getModuleName() ?>/list', array('pager' => $pager, 'sort' => $sort, 'helper' => $helper)) ?]
       <ul class="actions">
